@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+             xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/tableLayout">
+    <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:baselineAligned="false">
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit12" android:layout_column="1"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit11" android:layout_column="2"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit10" android:layout_column="3"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit9" android:layout_column="4"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit8" android:layout_column="5"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit7" android:layout_column="6"
+            android:layout_gravity="right" />
+    </TableRow>
+    <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:baselineAligned="false">
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="56"
+                android:id="@+id/pit13" android:layout_column="0"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="23"
+                android:id="@+id/pit6" android:layout_column="7"
+            android:layout_gravity="right|left" />
+    </TableRow>
+    <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:baselineAligned="false">
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit0" android:layout_column="1"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit1" android:layout_column="2"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit2" android:layout_column="3"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit3" android:layout_column="4"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit4" android:layout_column="5"/>
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="10"
+                android:id="@+id/pit5" android:layout_column="6"/>
+    </TableRow>
+    <LinearLayout
+        android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+        android:baselineAligned="false">
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="New Text"
+                android:id="@+id/textViewStatus" android:layout_gravity="left|center_vertical"/>
+    </LinearLayout>
+</TableLayout>

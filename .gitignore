@@ -18,3 +18,9 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# idea files
+*.iws
+workspace.xml
+tasks.xml
+
