@@ -1,0 +1,2 @@
+
+keytool -genkey -v -keystore gof-release-key.keystore -alias gof -keyalg RSA -keysize 2048 -validity 10000
