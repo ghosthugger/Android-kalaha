@@ -14,11 +14,11 @@ class Pos implements Serializable{
 
     public boolean withinMovingSideHome(int nPit) {
         return ((playersTurn
-		 && nPit >= 0
-		 && nPit <= 5)
+		              && nPit >= 0
+		              && nPit <= 5)
                 || (!playersTurn
-		    && nPit >= 7
-		    && nPit <= 12));
+		              && nPit >= 7
+		              && nPit <= 12));
     }
 
     public int movingSideKalaha(){
@@ -70,10 +70,10 @@ class Pos implements Serializable{
                 return nBranchValue;
 
             if(bFirst
-                    || (bMaxLevel
-			&& nBranchValue > nBestSoFar)
-                    ||	(!bMaxLevel
-			 && nBranchValue < nBestSoFar))
+               || (bMaxLevel
+			            && nBranchValue > nBestSoFar)
+               ||	(!bMaxLevel
+			            && nBranchValue < nBestSoFar))
             {
                 bFirst = false;
                 nBestSoFar = nBranchValue;
@@ -127,7 +127,7 @@ class Pos implements Serializable{
 
 
         int nBalls = pits[nPit];
-        int nOrignalBalls = nBalls;
+        int nOriginalBalls = nBalls;
         pits[nPit] = 0;
         int nCurrPit = nPit;
         do
@@ -148,12 +148,15 @@ class Pos implements Serializable{
             pits[nCurrPit]++;
         } while(nBalls>0);
 
-        if(nOrignalBalls >= 8
-                && pits[nCurrPit] == 1
-                && pits[oppositePit(nCurrPit)] != 0
-                && withinMovingSideHome(nCurrPit))
+        if(nOriginalBalls >= 8                          // to have a chance of wrapping the 7 opposite pits
+           && pits[nCurrPit] == 1                       // must have been empty when we started, now we dropped one here
+           && pits[oppositePit(nCurrPit)] != 0          // the opponent must have at least something to take
+           && withinMovingSideHome(nCurrPit))           // you must end up on your own side
         {
-            pits[movingSideKalaha()] += pits[nCurrPit];
+          // If the last stone lands in an empty pit owned by the player,
+          // and the opposite pit contains stones, 
+          // both the last stone and the opposite stones are captured and placed into the player's kalaha
+            pits[movingSideKalaha()] += pits[nCurrPit];                 //
             pits[movingSideKalaha()] += pits[oppositePit(nCurrPit)];
             pits[nCurrPit] = 0;
             pits[oppositePit(nCurrPit)] = 0;
@@ -170,17 +173,17 @@ class Pos implements Serializable{
         Move BestSoFar = new Move();
         boolean bFirst = true;
         int nNewBeta = 10000;
-        MoveIter iter = possibleMoves();
+        MoveIter movesIter = possibleMoves();
         Move current;
-        while(iter.hasNext()) {
-            current = iter.next();
+        while(movesIter.hasNext()) {
+            current = movesIter.next();
             Pos branch = current.perform(this);
             int nBranchValue = branch.value(nLevels - 1, true, -10000, nNewBeta);
             if(nBranchValue < nNewBeta)  // this is always min level!
                 nNewBeta = nBranchValue;
 
             if(bFirst
-                    || nBestSoFar > nBranchValue)
+               || nBestSoFar > nBranchValue)
             {
                 bFirst = false;
                 nBestSoFar = nBranchValue;

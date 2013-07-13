@@ -11,14 +11,14 @@ class Move {
         vecPartMoves = new Vector<Integer>(other.vecPartMoves);
     }
 
-    void addPartMove(int i){
-        vecPartMoves.add(i);
+    void addPartMove(int pit){
+        vecPartMoves.add(pit);
     }
 
     Pos perform(Pos p){
         Pos newPos = new Pos(p);
-        for(int value : vecPartMoves) {
-            newPos.distributePit(value);
+        for(int pit : vecPartMoves) {
+            newPos.distributePit(pit);
         }
 
         return newPos;

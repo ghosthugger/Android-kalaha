@@ -2,7 +2,6 @@ package se.forsum.kalaha;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
 
     private Vector<Button> buttons = new Vector<Button>(14);
     private TextView statusText = null;
-    private Game g = new Game();
+    private Game game = new Game();
 
     /**
      * Called when the activity is first created.
@@ -42,18 +41,18 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
         buttons.add((Button) this.findViewById(R.id.pit12));
         buttons.add((Button) this.findViewById(R.id.pit13));
 
-        for(Button b : buttons)
-            b.setOnClickListener(this);
+        for(Button button : buttons)
+            button.setOnClickListener(this);
 
         if(savedInstanceState != null) {
-            g = (Game) savedInstanceState.getSerializable("game");
-            g.setIGameStatus(this);
+            game = (Game) savedInstanceState.getSerializable("game");
+            game.setIGameStatus(this);
         } else {
-            g.setIGameStatus(this);
+            game.setIGameStatus(this);
 
             int difficulty = getIntent().getIntExtra("playLevel", 2);
-            g.setDifficulty(difficulty);
-            g.InitializeGameBoard();
+            game.setDifficulty(difficulty);
+            game.InitializeGameBoard();
         }
 
         play();
@@ -62,7 +61,7 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
 
     @Override
     public void onClick(View view) {
-        if(!g.getPlayersTurn()) {
+        if(!game.getPlayersTurn()) {
             return;
         }
 
@@ -72,12 +71,13 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
                 break;
         }
 
-        g.doNextPlayerMove(i + 1);
-        if(!g.getPlayersTurn()) {
+        game.doNextPlayerMove(i + 1);
 
-        new Thread(new Runnable() {
+        // TODO insert a wait here to give the payer a chance to see his move
+        if(!game.getPlayersTurn()) {
+          new Thread(new Runnable() {
             public void run() {
-                g.doNextComputerMove();
+                game.doNextComputerMove();
             }
         }).start();
         }
@@ -85,7 +85,7 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
     }
 
     void play() {
-        g.play();
+        game.play();
     }
 
 // IGameStatus
@@ -102,8 +102,8 @@ public class PlayKalaha extends Activity implements IGameStatus,OnClickListener 
 
     protected void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
-        Serializable game = g;
-        outState.putSerializable("game", g);
+        Serializable game = this.game;
+        outState.putSerializable("game", this.game);
     }
 
     protected void onRestoreInstanceState (Bundle savedInstanceState){

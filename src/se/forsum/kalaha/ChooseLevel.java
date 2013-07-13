@@ -30,10 +30,10 @@ public class ChooseLevel extends Activity implements View.OnClickListener {
 
         playLevel = Math.max(2,(int)(((playLevel / 100.0) * 7.0)+0.5));
 
-        Intent i = new Intent(getApplicationContext(), PlayKalaha.class);
-        i.putExtra("playLevel", playLevel);
+        Intent intent = new Intent(getApplicationContext(), PlayKalaha.class);
+        intent.putExtra("playLevel", playLevel);
 
-        this.startActivity(i);
+        this.startActivity(intent);
 
     }
 }

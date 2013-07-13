@@ -17,7 +17,7 @@ class Game implements Serializable {
     }
 
     public void play() {
-        updateStatus(difficulty);
+        updateStatus();
     }
 
     public void InitializeGameBoard() {
@@ -39,7 +39,7 @@ class Game implements Serializable {
         status.showPosition(pos);
     }
 
-    private void updateStatus(int nDifficulty) {
+    private void updateStatus() {
         while(!pos.opponentWins()
                 && !pos.playerWins()
                 && !pos.itIsADraw())
@@ -67,7 +67,7 @@ class Game implements Serializable {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                updateStatus(difficulty);
+                updateStatus();
             }
         });
         Move move;
@@ -77,7 +77,7 @@ class Game implements Serializable {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                updateStatus(difficulty);
+                updateStatus();
             }
         });
         computerMoving.set(false);
@@ -93,7 +93,7 @@ class Game implements Serializable {
             move = new Move();
             move.addPartMove(pitNumber - 1);
             pos = move.perform(pos);
-            updateStatus(difficulty);
+            updateStatus();
             return true;
         }
 
@@ -101,8 +101,8 @@ class Game implements Serializable {
         return false;
     }
 
-    public void setDifficulty(int n) {
-        difficulty = n;
+    public void setDifficulty(int d) {
+        difficulty = d;
     }
 
     private int difficulty = 2;
