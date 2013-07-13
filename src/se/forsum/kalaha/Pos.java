@@ -159,7 +159,7 @@ class Pos implements Serializable{
             pits[oppositePit(nCurrPit)] = 0;
         }
 
-        ifAnySideEmptyMoveAllToKalaha();
+        ifAnySideEmptyMoveOpponentToKalaha();
 
         if(nCurrPit != movingSideKalaha())
             playersTurn = !playersTurn;
@@ -240,7 +240,7 @@ class Pos implements Serializable{
         return playerWins() || opponentWins() || itIsADraw();
     }
 
-    void ifAnySideEmptyMoveAllToKalaha(){
+    void ifAnySideEmptyMoveOpponentToKalaha(){
         int nPSum = 0;
         for(int i=0 ; i <= 5 ; i++)
             nPSum += pits[i];
@@ -252,7 +252,13 @@ class Pos implements Serializable{
         if(nOSum == 0
                 || nPSum == 0)
         {
-            pits[movingSideKalaha()] += (nOSum + nPSum);
+            if(nOSum == 0)
+              pits[6] += nPSum;
+
+            if(nPSum == 0)
+              pits[13] += nOSum;
+
+//            pits[movingSideKalaha()] += (nOSum + nPSum);
             for(int i=0 ; i<=5 ; i++)
                 pits[i] = 0;
 

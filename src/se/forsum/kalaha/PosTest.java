@@ -135,24 +135,47 @@ public class PosTest {
 
     }
 
-    @Test
-    public void testIfAnySideEmptyMoveAllToKalaha() throws Exception {
-        Pos pos = new Pos();
-        pos.pits[0] = 0;
-        pos.pits[1] = 0;
-        pos.pits[2] = 0;
-        pos.pits[3] = 0;
-        pos.pits[4] = 0;
-        pos.pits[5] = 0;
+  @Test
+  public void testIfPlayerSideEmptyMoveOpponentToKalaha() throws Exception {
+    Pos pos = new Pos();
+    pos.pits[0] = 0;
+    pos.pits[1] = 0;
+    pos.pits[2] = 0;
+    pos.pits[3] = 0;
+    pos.pits[4] = 0;
+    pos.pits[5] = 0;
 
-        pos.ifAnySideEmptyMoveAllToKalaha();
+    pos.ifAnySideEmptyMoveOpponentToKalaha();
 
-        assert(pos.pits[7] == 0);
-        assert(pos.pits[8] == 0);
-        assert(pos.pits[9] == 0);
-        assert(pos.pits[10] == 0);
-        assert(pos.pits[11] == 0);
-        assert(pos.pits[12] == 0);
+    assert(pos.pits[7] == 0);
+    assert(pos.pits[8] == 0);
+    assert(pos.pits[9] == 0);
+    assert(pos.pits[10] == 0);
+    assert(pos.pits[11] == 0);
+    assert(pos.pits[12] == 0);
+    assert(pos.pits[13] == 36);
 
-    }
+  }
+
+  @Test
+  public void testIfOpponentSideEmptyMovePlayerToKalaha() throws Exception {
+    Pos pos = new Pos();
+    pos.pits[7] = 0;
+    pos.pits[8] = 0;
+    pos.pits[9] = 0;
+    pos.pits[10] = 0;
+    pos.pits[11] = 0;
+    pos.pits[12] = 0;
+
+    pos.ifAnySideEmptyMoveOpponentToKalaha();
+
+    assert(pos.pits[0] == 0);
+    assert(pos.pits[1] == 0);
+    assert(pos.pits[2] == 0);
+    assert(pos.pits[3] == 0);
+    assert(pos.pits[4] == 0);
+    assert(pos.pits[5] == 0);
+    assert(pos.pits[6] == 36);
+
+  }
 }
